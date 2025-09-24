@@ -35,10 +35,19 @@ public class GondolatolvasoGUI extends javax.swing.JFrame {
         pnGenGombok = new javax.swing.JPanel();
         jbtn1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mnuKilepes = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
         setMinimumSize(new java.awt.Dimension(500, 200));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         btnLetrehoz.setText("Létrehozás");
         btnLetrehoz.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +74,23 @@ public class GondolatolvasoGUI extends javax.swing.JFrame {
             }
         });
 
+        jMenu1.setText("File");
+
+        mnuKilepes.setText("Kilépés");
+        mnuKilepes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuKilepesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuKilepes);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,29 +99,28 @@ public class GondolatolvasoGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnGenGombok, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLetrehoz, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbtn1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                                .addComponent(jButton2))))
-                    .addComponent(btnLetrehoz, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton2)
+                            .addComponent(jbtn1)))
+                    .addComponent(pnGenGombok, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnLetrehoz, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnGenGombok, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addComponent(jbtn1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap(214, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLetrehoz, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2))
+                .addComponent(pnGenGombok, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -112,7 +137,7 @@ public class GondolatolvasoGUI extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent e) {
                     //String f = btn.getActionCommand();
                     //JOptionPane.showMessageDialog(rootPane,f);
-                    JOptionPane.showMessageDialog(rootPane,e.getActionCommand());
+                    JOptionPane.showMessageDialog(rootPane, e.getActionCommand());
                 }
             });
         }
@@ -126,6 +151,25 @@ public class GondolatolvasoGUI extends javax.swing.JFrame {
     private void kozosKattintasEsemeny(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kozosKattintasEsemeny
         // TODO add your handling code here:
     }//GEN-LAST:event_kozosKattintasEsemeny
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        kilepes();
+
+    }//GEN-LAST:event_formWindowClosing
+
+    private void mnuKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuKilepesActionPerformed
+        kilepes();
+    }//GEN-LAST:event_mnuKilepesActionPerformed
+    void kilepes() {
+        String cim = "KILÉPÉS";
+        String kerdes = "Biztos kilépsz?";
+        int gombok = JOptionPane.YES_NO_OPTION;
+        int jel = JOptionPane.QUESTION_MESSAGE;
+        int gomb = JOptionPane.showConfirmDialog(rootPane, kerdes, cim, gombok, jel);
+        if (gomb == JOptionPane.YES_NO_OPTION) {
+            System.exit(WIDTH);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -165,7 +209,11 @@ public class GondolatolvasoGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLetrehoz;
     private javax.swing.JButton jButton2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JButton jbtn1;
+    private javax.swing.JMenuItem mnuKilepes;
     private javax.swing.JPanel pnGenGombok;
     // End of variables declaration//GEN-END:variables
 }
